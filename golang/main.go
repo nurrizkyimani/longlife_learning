@@ -1,22 +1,20 @@
 package main
 
-
 // v3
 
 import (
-    "fmt"
-    "github.com/nurrizkyimani/longlife_learning/golang/greetings"
-    "github.com/nurrizkyimani/longlife_learning/golang/utils"
-    "log"
-  
+	"fmt"
+	"log"
+
+	"github.com/nurrizkyimani/longlife_learning/golang/greetings"
+	"github.com/nurrizkyimani/longlife_learning/golang/utils"
 )
 
 func main() {
 
-    log.setPrefix("greetings: ")
-    log.setFlags(0)
+    log.SetPrefix("greetings: ")
+    log.SetFlags(0)
 
-  
     // Get a greeting message and print it.
     message := greetings.Hello("Gladys")
     fmt.Println(message)
@@ -24,15 +22,25 @@ func main() {
     n:= utils.TestingLen("Gladys")
     fmt.Println(n)
 
-    msgV2, errHello := greetings.HelloV2("")
+    _ , errHello := greetings.HelloV2("")
 
+    _ , errHello2 := utils.HellosV3([]string{"Gladys", "Nur", "Imani", "Nurrizky"})
   
     if errHello != nil {
       fmt.Println("no File")
-      log.Fatal(err)
+      log.Fatal(errHello)
     } else {
-      fmt.Prinln("aman")
+      fmt.Println("aman")
     }
+
+    if errHello2 != nil {
+      fmt.Println("no File")
+      log.Fatal(errHello2)
+    } else {
+      fmt.Println("aman")
+    }
+
+
   
 
 }
