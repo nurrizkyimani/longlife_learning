@@ -1,11 +1,66 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/nurrizkyimani/longlife_learning/golang/service"
+)
 
 func main() {
-	fmt.Println("first trial")
+	fmt.Println("Executing Goroutine")
+	arrNum := []int{1, 2, 3, 4, 5}
+	ch := make(chan int, len(arrNum))
 
+	go service.TimesThreeV3(arrNum, ch)
+	for i := 0; i < len(arrNum); i++ {
+		resv := <-ch
+		fmt.Printf("Result: %v \n", resv)
+	}
 }
+
+//V5 : Anonymous functions as goroutines
+//func main() {
+//	fmt.Println("Executing Goroutine")
+//	arrNum := []int{1, 2, 3, 4, 5}
+//	ch := make(chan int, len(arrNum))
+//
+//	go func(arr []int, ch chan int) {
+//		for _, elem := range arr {
+//			//fmt.Println(elem)
+//			ch <- elem * 3
+//		}
+//	}(arrNum, ch)
+//
+//	time.Sleep(time.Second)
+//
+//	for i := 0; i < len(arrNum); i++ {
+//		resx := <-ch
+//
+//		fmt.Printf("Result: %v \n", resx)
+//	}
+//
+//}
+
+//V4:Buffered Channels
+//func main() {
+//	fmt.Println("Executing Goroutine")
+//	arrNum := []int{1, 2, 3, 4, 5}
+//	ch := make(chan int, len(arrNum))
+//
+//	//go service.TimesThree(3, ch)
+//	//go service.TimesTwo(2, ch)
+//
+//	go service.TimeThreeV2(arrNum, ch)
+//	time.Sleep(time.Second)
+//
+//	for i := 0; i < len(arrNum); i++ {
+//		resx := <-ch
+//
+//		fmt.Printf("Result: %v \n ", resx)
+//	}
+//
+//	//fmt.Printf("this is chan res:  %v", result)
+//
+//}
 
 // V3
 //func main() {
